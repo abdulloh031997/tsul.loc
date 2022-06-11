@@ -59,12 +59,39 @@ class PersonController extends Controller
      */
     public function actionIndex()
     {
-        $user = Yii::$app->user->identity->id;
-        if (isset($user) && !empty($user)) {
-            return $this->render('index');
+        $user = Yii::$app->user->identity;
+        if (isset($user->id) && (!empty($user->address) && !empty($user->old) && !empty($user->abitur))) {
+            $abitur  = Abitur::find()
+                                ->select(['person.*','user.username','abitur.image_cert','abitur.image_olympic','nation.name as nation',
+                                    'lang.name as lang','edu.name as edu_name',
+                                    'flang.name as flang_name','region.name as region_name',
+                                    'district.name as district_name','person_address.address',
+                                    'old_region.name as old_edu_region','old_disc.name as old_edu_disc',
+                                    'scholl.name as maktab',
+                                    'old_edu.is_scholl',
+                                    'old_edu.scholl_name','direction.name as direction_name'
+                                ])
+                                ->joinWith('user',false)
+                                ->joinWith('direction',false)
+                                ->joinWith('user.person',false)
+                                ->joinWith('user.person.nation',false)
+                                ->joinWith('lang',false)
+                                ->joinWith('edu',false)
+                                ->joinWith('flang',false)
+                                ->joinWith('user.old',false)
+                                ->joinWith('user.old.scholl',false)
+                                ->joinWith('user.old.region as old_region',false)
+                                ->joinWith('user.old.district as old_disc',false)
+                                ->joinWith('user.address.region',false)
+                                ->joinWith('user.address.district as district',false)
+                                ->where(['abitur.user_id'=>$user->id])
+                                ->asArray()
+                                ->one();
+
+            return $this->render('index',['abitur'=>$abitur]);
         } else {
-            Yii::$app->session->setFlash('warning', "Xizmat yopiq");
-            return $this->render('index');
+            Yii::$app->session->setFlash('warning', "Shaxsiy ma'lumotlar to'ldiring");
+            return $this->redirect('create');
         }
     }
 
@@ -89,13 +116,14 @@ class PersonController extends Controller
     public function actionCreate()
     {
         $user = Yii::$app->user->identity->id;
-        if (isset($user) && !empty($user)) {
-            $model = Person::find()->where(['user_id' => Yii::$app->user->identity->id])->one();
+        if (isset($user)) {
+            $model = Person::find()->where(['user_id' => $user])->one();
             if (!isset($model)) {
                 $model = new Person();
             }
             if ($model->load($this->request->post())) {
                 if ($model->save()) {
+                    Yii::$app->session->setFlash('success-alert', "Saqlandi 😉");
                     return $this->redirect('address');
                 }
             }
@@ -104,8 +132,8 @@ class PersonController extends Controller
             ]);
         }
         else {
-            Yii::$app->session->setFlash('danger', "Xizmat yopiq");
-            return $this->render('index');
+            Yii::$app->session->setFlash('warning', "Shaxsiy ma'lumotlar to'ldiring");
+            return $this->redirect('index');
         }
     }
 
@@ -120,6 +148,7 @@ class PersonController extends Controller
             if ($this->request->isPost) {
                 if ($model->load($this->request->post())) {
                     if ($model->save()) {
+                        Yii::$app->session->setFlash('success-alert', "Saqlandi 😉");
                         return $this->redirect('old-edu');
                     }
                 }
@@ -129,8 +158,8 @@ class PersonController extends Controller
             ]);
         }
         else {
-            Yii::$app->session->setFlash('danger', "Xizmat yopiq");
-            return $this->render('index');
+            Yii::$app->session->setFlash('warning', "Shaxsiy ma'lumotlar to'ldiring");
+            return $this->redirect('create');
         }
     }
 
@@ -145,6 +174,7 @@ class PersonController extends Controller
             if ($this->request->isPost) {
                 if ($model->load($this->request->post())) {
                     if ($model->save()) {
+                        Yii::$app->session->setFlash('success-alert', "Saqlandi 😉");
                         return $this->redirect('abitur');
                     } else {
                         print_r($model->getErrors());
@@ -156,8 +186,8 @@ class PersonController extends Controller
             ]);
         }
         else {
-            Yii::$app->session->setFlash('danger', "Xizmat yopiq");
-            return $this->render('index');
+            Yii::$app->session->setFlash('warning', "Shaxsiy ma'lumotlar to'ldiring");
+            return $this->redirect('address');
         }
     }
 
@@ -172,6 +202,7 @@ class PersonController extends Controller
             if ($this->request->isPost) {
                 if ($model->load($this->request->post())) {
                     if ($model->save()) {
+                        Yii::$app->session->setFlash('success-alert', "Muvaffaqiyatli ariza qoldirdi 😉");
                         return $this->redirect('index');
                     } else {
                         print_r($model->getErrors());
@@ -183,8 +214,8 @@ class PersonController extends Controller
             ]);
         }
         else {
-            Yii::$app->session->setFlash('danger', "Xizmat yopiq");
-            return $this->render('index');
+            Yii::$app->session->setFlash('warning', "Shaxsiy ma'lumotlar to'ldiring");
+            return $this->redirect('old-edu');
         }
     }
 

@@ -80,12 +80,12 @@ class Abitur extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'user_id' => 'User ID',
-            'lang_id' => 'Lang ID',
-            'flang_id' => 'Flang ID',
-            'edu_id' => 'Edu ID',
-            'direction_id' => 'Direction ID',
-            'image_cert' => 'Image Cert',
-            'image_olympic' => 'Image Olympic',
+            'lang_id' => "Ta'lim tili",
+            'flang_id' => 'Chet tili',
+            'edu_id' => 'Litsey',
+            'direction_id' => "Yo‘nalish",
+            'image_cert' => 'Chet tili sertifikati',
+            'image_olympic' => 'Olimpiyada  sertifikati',
         ];
     }
 
@@ -108,6 +108,14 @@ class Abitur extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Lang::className(), ['id' => 'lang_id']);
     }
+    public function getEdu()
+    {
+        return $this->hasOne(Edu::className(), ['id' => 'edu_id']);
+    }public function getDirection()
+    {
+        return $this->hasOne(Direction::className(), ['id' => 'direction_id']);
+    }
+
 
     /**
      * Gets query for [[User]].

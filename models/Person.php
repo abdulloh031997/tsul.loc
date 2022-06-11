@@ -84,7 +84,6 @@ class Person extends \yii\db\ActiveRecord
             'nation_id' => 'Millati',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
-            'image' => 'Rasim',
             'user_id' => 'User ID',
         ];
     }
@@ -107,5 +106,9 @@ class Person extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+    public function getNation()
+    {
+        return $this->hasOne(Nation::className(), ['id' => 'nation_id']);
     }
 }

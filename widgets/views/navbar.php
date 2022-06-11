@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light mt-3">
+<nav class="navbar navbar-expand-lg navbar-light bg-light mt-3" id="NavBar">
     <div class="container-fluid">
         <button class="navbar-toggler"
                 type="button"
@@ -11,7 +11,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <a class="navbar-brand mt-2 mt-lg-0" href="/">
-                <img src="/img/logoone.jpg" alt="Logo">
+                <img src="../img/gerb.png" width="200px" alt="Logo">
             </a>
         </div>
         <div class="d-flex align-items-center">
@@ -27,19 +27,12 @@
                 <ul class="navbar-nav flex-row">
                     <li class="nav-item me-3 me-lg-1">
                         <a class="nav-link d-sm-flex align-items-sm-center " href="#">
-                            <img
-                                    src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
-                                    class="rounded-circle"
-                                    height="22"
-                                    alt="Black and White Portrait of a Man"
-                                    loading="lazy"
-                            />
-                            <strong class="d-none d-sm-block ms-1">John</strong>
+                            <strong class="d-none d-sm-block ms-1"><?=Yii::$app->user->identity->username?></strong>
                         </a>
                     </li>
 
                 </ul>
-                    <?= \yii\helpers\Html::a('<i class="fa fa-sign-out"></i>', ['/site/logout'], ['class' => 'btn btn-outline-primary btn-rounded', 'data' => ['method' => 'post']]) ?>
+                    <?= \yii\helpers\Html::a('<i class="fa fa-sign-out"></i>', ['/site/logout'], ['class' => 'btn btn-outline-primary btn-rounded btn-sm', 'data' => ['method' => 'post']]) ?>
                 </li>
             <?php endif ?>
         </div>

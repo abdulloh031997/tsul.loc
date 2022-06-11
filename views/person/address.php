@@ -9,8 +9,8 @@ use app\models\Region;
 /* @var $this yii\web\View */
 /* @var $model app\models\Person */
 /* @var $form yii\widgets\ActiveForm */
-$this->title = 'Create Address';
-$this->params['breadcrumbs'][] = ['label' => 'People', 'url' => ['index']];
+$this->title = 'Doimiy yashash manzili';
+$this->params['breadcrumbs'][] = ['label' => 'Bosh sahifa', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 $region = ArrayHelper::map(Region::find()
     ->where(['between', 'id', "1000", "2000"])
@@ -29,9 +29,9 @@ if ($user->address) {
 <div class="person-form">
     <div class="row">
         <div class="col-12">
-            <div class="card border mb-4">
+            <div class="card  border-top border-primary shadow-5 mx-0  mb-4">
                 <div class="card-header pb-0">
-                    <h6 class="text-center">Yashash Address</h6>
+                    <h6 class="text-center text-uppercase">Doimiy yashash manzili</h6>
                 </div>
                 <div class="card-body px-2 pt-0 pb-2">
                     <?php $form = ActiveForm::begin(); ?>
@@ -56,7 +56,7 @@ if ($user->address) {
                             <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
                         </div>
                         <div class="form-group">
-                            <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+                            <?= Html::submitButton('Saqlash', ['class' => 'btn btn-success']) ?>
                         </div>
 
                         <?php ActiveForm::end(); ?>

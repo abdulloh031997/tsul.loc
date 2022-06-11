@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="card">
     <div class="card-header pb-0 text-left bg-transparent">
-        <h3 class="font-weight-bolder text-info text-gradient">Tizimga kirish</h3>
+        <h3 class="font-weight-bolder text-info text-gradient text-center">Tizimga kirish</h3>
         <p class="mb-0">Hurmatli foydalanuvchi, tizimdan foydalanish uchun telefon raqamingizni kiriting</p>
     </div>
     <div class="card-body">
@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= $form->field($model, 'password')->passwordInput()->label(false) ?>
         </div>
         <div class="col-lg-12 text-center">
-            <?= Html::submitButton('Kirish', ['class' => 'btn bg-gradient-info w-100 mt-4 mb-0', 'name' => 'login-button']) ?>
+            <?= Html::submitButton('KIRISH', ['class' => 'btn btn-primary btn-rounded w-100 mt-4 mb-0', 'name' => 'login-button']) ?>
         </div>
         <?php ActiveForm::end(); ?>
     </div>

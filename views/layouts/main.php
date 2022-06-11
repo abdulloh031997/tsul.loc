@@ -22,7 +22,7 @@ AppAsset::register($this);
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"  />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <?php $this->head() ?>
 </head>
@@ -36,7 +36,7 @@ AppAsset::register($this);
         </div>
         <div class="col-md-12">
             <?php
-                $flash = Yii::$app->session->getAllFlashes();
+            $flash = Yii::$app->session->getAllFlashes();
             if (!empty($flash)):
                 foreach ($flash as $type => $message) :
                     $js = <<< JS
@@ -47,11 +47,11 @@ JS;
             endif; ?>
         </div>
         <div class="col-md-12 my-5">
-            <div class="content-header row">
-                <div class="content-header-left col-12 mb-2 mt-0">
-                    <div class="row breadcrumbs-top">
-                        <div class="col-12">
-                            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="row">
+                <div class="col-12 ">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-5" id="NavBar">
+                        <div class="container-fluid">
+                            <nav aria-label="breadcrumb">
                                 <?php
                                 echo Breadcrumbs::widget([
                                     'options' => ['class' => 'breadcrumb'],
@@ -60,56 +60,52 @@ JS;
                                         'url' => Yii::$app->homeUrl,
                                         'encode' => false,
                                     ],
-                                    'itemTemplate' => "<li class='breadcrumb-item'> {link} </li>\n",
+                                    'itemTemplate' => "<li class='breadcrumb-item '> {link} </li>\n",
                                     'activeItemTemplate' => "<li class='breadcrumb-item active' aria-current='page'> {link} </li>\n",
                                     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                                 ]);
                                 ?>
                             </nav>
                         </div>
-                    </div>
+                    </nav>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row" id="MainContentDashbord">
-        <div class="col-md-3">
-            <div class="row">
-                <div class="col-12">
-                    <div class="nav flex-column nav-tabs text-center"
-                         id="v-tabs-tab">
-                        <a class="nav-link <?=Yii::$app->request->url == '/person/index' ? 'active' : '' ?>
-                                            <?=Yii::$app->request->url == '/person/index'? 'active' : '' ?>"
-                           id="v-tabs-home-tab"
-                           href="/person/index">MENING ARIZALARIM</a>
-                        <a class="nav-link  <?=Yii::$app->request->url == '/person/create' ? 'active' : '' ?>
-                                            <?=Yii::$app->request->url == '/person/create'? 'active' : '' ?>"
-                           id="v-tabs-profile-tab"
-                           href="/person/create">SHAXSIY MA'LUMOTLAR </a>
-                        <a class="nav-link  <?=Yii::$app->request->url == '/person/address' ? 'active' : '' ?>
-                                            <?=Yii::$app->request->url == '/person/address'? 'active' : '' ?>"
-                           id="v-tabs-profile-tab"
-                           href="/person/address">Yashash Address</a>
-                        <a class="nav-link  <?=Yii::$app->request->url == '/person/old-edu' ? 'active' : '' ?>
-                                            <?=Yii::$app->request->url == '/person/old-edu'? 'active' : '' ?>"
-                           id="v-tabs-profile-tab"
-                           href="/person/old-edu">Tugatgan ta'lim muassasi</a>
-                        <a class="nav-link <?=Yii::$app->request->url == '/person/abitur' ? 'active' : '' ?>
-                                       <?=Yii::$app->request->url == '/person/abitur'? 'active' : '' ?>"
-                           id="v-tabs-messages-tab"
-                           href="/person/abitur">ARIZANI TAXRIRLASH</a>
-                    </div>
+        <div class="row" id="MainContentDashbord">
+            <div class="col-md-3">
+                <div class="nav card flex-column nav-tabs text-center"
+                     id="v-tabs-tab">
+                    <a class="nav-link <?= Yii::$app->request->url == '/person/index' ? 'active' : '' ?>
+                                            <?= Yii::$app->request->url == '/person/index' ? 'active' : '' ?>"
+                       id="v-tabs-home-tab"
+                       href="/person/index">Mening arizalarim</a>
+                    <a class="nav-link <?= Yii::$app->request->url == '/person/create' ? 'active' : '' ?>
+                                            <?= Yii::$app->request->url == '/person/create' ? 'active' : '' ?>"
+                       id="v-tabs-profile-tab"
+                       href="/person/create">Shaxsiy ma'lumotlar</a>
+                    <a class="nav-link <?= Yii::$app->request->url == '/person/address' ? 'active' : '' ?>
+                                            <?= Yii::$app->request->url == '/person/address' ? 'active' : '' ?>"
+                       id="v-tabs-profile-tab"
+                       href="/person/address">Doimiy yashash manzili</a>
+                    <a class="nav-link <?= Yii::$app->request->url == '/person/old-edu' ? 'active' : '' ?>
+                                            <?= Yii::$app->request->url == '/person/old-edu' ? 'active' : '' ?>"
+                       id="v-tabs-profile-tab"
+                       href="/person/old-edu">Tugatgan ta'lim muassasasi
+                    </a>
+                    <a class="nav-link <?= Yii::$app->request->url == '/person/abitur' ? 'active' : '' ?>
+                                       <?= Yii::$app->request->url == '/person/abitur' ? 'active' : '' ?>"
+                       id="v-tabs-messages-tab"
+                       href="/person/abitur">ARIZANI TAXRIRLASH</a>
                 </div>
             </div>
-        </div>
-        <div class="col-md-9">
-            <?= $content ?>
+            <div class="col-md-9">
+                <?= $content ?>
+            </div>
         </div>
     </div>
-</div>
 
-<?php $this->endBody() ?>
-<script async defer src="https://buttons.github.io/buttons.js"></script>
+    <?php $this->endBody() ?>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
 </html>
 <?php $this->endPage() ?>

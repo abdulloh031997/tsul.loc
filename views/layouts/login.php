@@ -41,8 +41,7 @@ AppAsset::register($this);
         <div class="col-md-6 text-dark">
             <div class="RegistrationRightCard d-flex justify-content-end">
                 <div>
-                    <div class="gerb"><img src="../img/gerb.png" alt=""></div>
-                    <div class="lock"><img src="../img/lock-screen1.png" alt=""></div>
+                    <div class="lock"><img src="../img/Login-rafiki.svg" alt=""></div>
                 </div>
             </div>
         </div>

@@ -58,14 +58,14 @@ class OldEdu extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'region_id' => 'Region ID',
-            'district_id' => 'District ID',
-            'scholl_id' => 'Scholl ID',
+            'region_id' => 'Viloyat',
+            'district_id' => 'Tuman',
+            'scholl_id' => 'Maktab tanlang',
             'user_id' => 'User ID',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'is_scholl' => 'Boshqa Maktab',
-            'scholl_name' => 'Scholl Name',
+            'scholl_name' => 'Maktab nomi',
         ];
     }
 

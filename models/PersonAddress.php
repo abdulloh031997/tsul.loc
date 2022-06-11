@@ -54,9 +54,9 @@ class PersonAddress extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'person_id' => 'Person ID',
-            'region_id' => 'Region ID',
-            'district_id' => 'District ID',
-            'address' => 'Address',
+            'region_id' => 'Viloyat',
+            'district_id' => 'Tuman',
+            'address' => 'Manzil',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'user_id' => 'User ID',
@@ -71,6 +71,14 @@ class PersonAddress extends \yii\db\ActiveRecord
     public function getPerson()
     {
         return $this->hasOne(Person::className(), ['id' => 'person_id']);
+    }
+    public function getRegion()
+    {
+        return $this->hasOne(Region::className(), ['id' => 'region_id']);
+    }
+    public function getDistrict()
+    {
+        return $this->hasOne(Region::className(), ['id' => 'district_id']);
     }
 
     /**

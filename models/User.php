@@ -160,4 +160,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return $this->hasOne(OldEdu::className(), ['user_id' => 'id']);
     }
+    public function getAbitur()
+    {
+        return $this->hasOne(Abitur::className(), ['user_id' => 'id']);
+    }
 }

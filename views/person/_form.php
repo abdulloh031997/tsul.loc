@@ -10,9 +10,9 @@ use yii\widgets\ActiveForm;
 <div class="person-form">
     <div class="row">
         <div class="col-12">
-            <div class="card border mb-4">
+            <div class="card  border-top border-primary shadow-5 mx-0  mb-4">
                 <div class="card-header pb-0">
-                    <h6 class="text-center">Shaxsiy ma'lumotlar</h6>
+                    <h6 class="text-center text-uppercase">Shaxsiy ma'lumotlar</h6>
                 </div>
                 <div class="card-body px-2 pt-0 pb-2">
                     <?php $form = ActiveForm::begin(); ?>
@@ -38,13 +38,13 @@ use yii\widgets\ActiveForm;
                                 'options' => ['placeholder' => Yii::t('app','Tanlash'), 'multiple' => false],
                                 'theme' => \kartik\select2\Select2::THEME_KRAJEE,
                             ]);  ?></div>
-                        <div class="col-md-4"><label for=""><?=Yii::t('app','Rasim')?></label>
+                        <div class="col-md-4"><label for=""><?=Yii::t('app','Rasim 3x4')?></label>
                             <?= $form->field($model, 'file')->fileInput(['maxlength' => true])->label(false) ?></div>
-                        <div class="col-md-4"><label for=""><?=Yii::t('app','Rasim')?></label>
+                        <div class="col-md-4"><label for=""><?=Yii::t('app','Shahodat noma')?></label>
                             <?= $form->field($model, 'file_one')->fileInput(['maxlength' => true])->label(false) ?></div>
                     </div>
                     <div class="form-group">
-                        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+                        <?= Html::submitButton('Saqlash', ['class' => 'btn btn-success']) ?>
                     </div>
 
                     <?php ActiveForm::end(); ?>
